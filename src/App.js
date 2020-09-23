@@ -1,25 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  Switch,
+  Route
+} from "react-router-dom";
+import { Layout } from "antd"
+import Sidebar from "./Components/Sidebar"
+import Home from "./Views/Home";
+import Login from "./Views/Login";
 import './App.css';
+import Register from "./Views/Register"
+import Profile from "./Views/Profile"
+import Admin from "./Views/Admin"
+import Meetings from "./Views/Meetings"
 
-function App() {
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout className="App">
+      <Sidebar/>
+      <Switch>
+        <div>
+          <Route exact path="/">  
+            <Home/>
+          </Route>
+          <Route path="/signUp">
+            <Register/>
+          </Route>
+          <Route path="/login">
+            <Login/>
+          </Route>
+          <Route path="/profile">
+            <Profile/>
+          </Route>
+          <Route path="/admin">
+            <Admin/>
+          </Route>
+          <Route path="/meetings/:eventId/:participantId">
+            <Meetings/>
+          </Route>
+        </div>
+      </Switch>
+    </Layout>
+    
+    
   );
 }
 
