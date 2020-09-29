@@ -12,6 +12,7 @@ import Register from "./Views/Register"
 import Profile from "./Views/Profile"
 import Admin from "./Views/Admin"
 import Meetings from "./Views/Meetings"
+import AttendantCreate from "./AdminProvider/AttendantProvider/AttendantCreate"
 
 
 function App(props) {
@@ -37,6 +38,9 @@ function App(props) {
           </Route>
           <Route path="/meetings/:eventId/:participantId">
             <Meetings/>
+          </Route>
+          <Route path="/invite/:eventId/:participantId">
+            <AttendantCreate/>
           </Route>
         </div>
       </Switch>

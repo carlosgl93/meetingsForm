@@ -14,14 +14,10 @@ function AttendantList(props) {
   return (
     <List {...props} filters={<AttendantsFilter />}>
       <Datagrid>
-        <TextField source="name" />
-        <TextField source="lastName" />
-        <ReferenceField source="categoryId" reference="categories">
-          <TextField source="name"/>
-        </ReferenceField>
-        <TextField source="empresa" />
-        <TextField source="contactEmail" />
-        
+        <TextField label="Nombre" source="name" />
+        <TextField label="Apellido" source="lastName" />
+        <TextField label="Empresa" source="empresa" />
+        <TextField label="Email" source="contactEmail" />
         <EditButton label="Editar" />
         <DeleteButton label="Eliminar" redirect={false} />
       </Datagrid>

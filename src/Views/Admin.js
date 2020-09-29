@@ -32,13 +32,15 @@ function AdminApp() {
         <Admin dataProvider={dataProvider}>
         <Resource 
             name="events" 
+            options={{label: "Eventos"}}
             list={EventList}
             show={EventShow}
             create={EventCreate}
             edit={EventEdit}
             />
         <Resource
-            name="clients"
+            name="companiesFromExcel"
+            options={{label: "Compañias"}}
             list={ClientList}
             Show={ClientShow}
             create={ClientCreate}
@@ -46,13 +48,15 @@ function AdminApp() {
         />
         <Resource
             name="users"
+            options={{label: "Organizadores"}}
             list={OrganizerList}
             Show={OrganizerShow}
             create={OrganizerCreate}
             edit={OrganizerEdit}
         />
         <Resource
-            name="attendants"
+            name="participantsFromExcel"
+            options={{label: "Participantes"}}
             list={AttendantsList}
             Show={AttendantShow}
             create={AttendantCreate}
@@ -60,6 +64,7 @@ function AdminApp() {
         />
         <Resource
             name="categories"
+            options={{label: "Categorias"}}
             list={CategoriesList}
             Show={CategoryShow}
             create={CategoryCreate}
@@ -67,6 +72,7 @@ function AdminApp() {
         />
         <Resource 
             name="breaks" 
+            options={{label: "Breaks"}}
             list={BreakList}
             show={BreakShow}
             create={BreakCreate}

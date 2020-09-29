@@ -20,17 +20,7 @@ function ClientEdit(props) {
         <TextInput source="lastName" label="Apellido del participante" />
         <TextInput source="empresa" label="Empresa del participante" />
         <TextInput source="contactEmail" label="Email del participante" />
-        <ReferenceInput source="categoryId" reference="categories">
-          <SelectInput
-            source="categoryId"
-            
-            choices={[
-              { id: "R3IgQUQmKSuuYjPpTdSf", name: "Colaborador" },
-              { id: "rkx1CUZIjdIkIBikXbg0", name: "Gold" },
-              { id: "t6Ixw5XcjYwc42k4VvAD", name: "Premium" },
-            ]}
-          />
-        </ReferenceInput>
+        
         
         
       </SimpleForm>

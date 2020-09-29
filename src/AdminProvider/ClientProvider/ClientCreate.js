@@ -16,11 +16,12 @@ function ClientCreate(props) {
       <Create {...props}>
       
         <SimpleForm>
-        <h2>Registra tu productora</h2>
-          <TextInput source="name" label="Nombre de la productora" />
-          <RichTextInput label="Descripcion del Cliente" source="description" />
-          
-          {/**ReferenceArrayInput */}
+        <h2>Ingrese una empresa nueva</h2>
+          <TextInput source="name" label="Nombre de la empresa" />
+          <ReferenceInput source="categoryId" reference="categories">
+              <SelectInput  source="name" choices=""/>
+          </ReferenceInput>
+          <TextInput source="contactEmail" label="Email de la empresa" />
         </SimpleForm>
       </Create>
     </div>

@@ -16,12 +16,8 @@ function ClientShow(props) {
       <Show {...props}>
         <SimpleShowLayout>
           <TextField source="name" />
-          <TextField source="field" />
-          <RichTextField source="description" />
-          {/**ReferenceArrayField */}
-          {/* <ReferenceField>
-            <ArrayField source={props.docId} />
-          </ReferenceField> */}
+          <TextField source="categoryId" />
+          <TextField source="contactEmail" />
           
         </SimpleShowLayout>
       </Show>

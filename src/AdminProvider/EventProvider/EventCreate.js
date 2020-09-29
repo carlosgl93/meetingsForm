@@ -1,5 +1,6 @@
 import React from "react";
-import ReadExcel from "../../Components/ReadExcel"
+import EmpresasFromExcel from "../../Components/EmpresasFromExcel"
+import AsistentesFromExcel from "../../Components/AsistentesFromExcel"
 import {
   Create,
   SimpleForm,
@@ -12,7 +13,8 @@ import {
   ReferenceInput,
   SelectInput,
   Toolbar,
-  SaveButton
+  SaveButton,
+  ImageInput
 } from "react-admin";
 import { Button } from "antd";
 import RichTextInput from "ra-input-rich-text";
@@ -51,16 +53,13 @@ function EventCreate(props) {
           </Button>
           <TextInput source="address" label="Lugar del Evento" />
           <DateInput source="date" label="Fecha del Evento" />
-          <RichTextInput />
+          <ImageInput label="Banner del Evento" source="eventImg"></ImageInput>
+          <RichTextInput label="Descripcion del evento"/>
           {/**Funcion para leer y sacar empresas y participantes */}
-          <FileInput
-            source="empresasFile"
-            label="Ingresar empresas participantes mediante archivo excel/csv"
-            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-          >
-            <FileField source="src" title="title" />
-          </FileInput>
-          <ReadExcel eventId={eventId}/>
+          <p>Suba el archivo con las empresas asistentes al evento</p>
+          <EmpresasFromExcel eventId={eventId}/>
+          <p>Suba el archivo con los asistentes del evento</p>
+          <AsistentesFromExcel eventId={eventId}/>
         </SimpleForm>
       </Create>
     </div>

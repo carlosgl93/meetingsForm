@@ -20,7 +20,7 @@ import {
   RadioButtonGroupInput,
 } from "react-admin";
 
-function ReadExcel(props) {
+function EmpresasFromExcel(props) {
   const [state, setState] = useState({
     
   });
@@ -94,7 +94,7 @@ function ReadExcel(props) {
       rows.forEach( (row) => {
         row = { ...row, eventId: props.eventId}
         console.log(row)
-        firestore.collection("participantsFromExcel").add(row)
+        firestore.collection("companiesFromExcel").add(row)
       });
      
       
@@ -114,7 +114,7 @@ function ReadExcel(props) {
     <Tooltip
       title={
         <ul>
-          <li>Suba el archivo Excel con sus participantes.</li>
+          <li>Suba el archivo Excel con sus empresas.</li>
           <li>Los títulos de las columnas no deben tener tildes ni ñ</li>
         </ul>
       }
@@ -125,11 +125,11 @@ function ReadExcel(props) {
         {isDragActive ? (
           <p>Drop the files here ...</p>
         ) : (
-          <p>Drag 'n' drop some files here, or click to select files</p>
+          <p>Click para seleccionar el archivo a subir</p>
         )}
       </div>
     </Tooltip>
   );
 }
 
-export default ReadExcel;
+export default EmpresasFromExcel;
