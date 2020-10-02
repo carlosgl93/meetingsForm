@@ -3,11 +3,7 @@ import {
   Create,
   SimpleForm,
   TextInput,
-  ArrayInput,
-  ReferenceInput,
-  SelectArrayInput
 } from "react-admin";
-import RichTextInput from "ra-input-rich-text";
 
 function ClientCreate(props) {
   return (

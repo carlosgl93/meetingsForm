@@ -36,13 +36,12 @@ function EventCreate(props) {
       <Create {...props}>
         <SimpleForm  toolbar={<PostSave transform={data => ({ ...data, id: eventId })} eventId={eventId}/>}>
           <TextInput source="name" label="Nombre del Evento" />
-          {/**Boton para llegar al OrganizerCreate */}
           <ReferenceInput
             label="Organizador del evento"
             source="organizerId"
             reference="users"
           >
-            <SelectInput source="id" />
+            <SelectInput source="name" optionText={record => `${record.name} ${record.lastName}`} />
           </ReferenceInput>
           <Button>
             <Link to="/users/create">Crear Organizador</Link>
@@ -50,7 +49,7 @@ function EventCreate(props) {
           <TextInput source="address" label="Lugar del Evento" />
           <DateInput source="date" label="Fecha del Evento" />
           <ImageInput label="Banner del Evento" source="eventImg"></ImageInput>
-          <RichTextInput label="Descripcion del evento"/>
+          <RichTextInput label="Descripcion del evento" source="description"/>
           {/**Funcion para leer y sacar empresas y participantes */}
           <p>Suba el archivo con las empresas asistentes al evento</p>
           <EmpresasFromExcel eventId={eventId}/>
