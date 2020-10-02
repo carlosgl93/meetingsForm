@@ -4,9 +4,8 @@ import {
     SimpleForm,
     DateTimeInput,
     TextInput,
-    TextField,
-    ArrayInput,
     ReferenceInput,
+    ReferenceArrayInput,
     SelectInput,
     SelectArrayInput
 } from "react-admin"
@@ -19,9 +18,9 @@ function EventEdit(props) {
         <TextInput source="name" />
         <TextInput source="address" />
         <TextInput source="description" />
-        <ReferenceInput label="Breaks del evento" source="name" reference="breaks">
-              <SelectArrayInput optionText="name" />
-          </ReferenceInput>
+        <ReferenceArrayInput label="Breaks del evento" source="id" reference="breaks">
+          <SelectArrayInput optionText="name" />
+        </ReferenceArrayInput>
         <ReferenceInput source="organizerId" reference="users">
           <SelectInput
             source="name"
