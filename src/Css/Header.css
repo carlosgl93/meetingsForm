@@ -1,0 +1,21 @@
+.header {
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    grid-template-rows: 1;
+    background-color: #fff;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    padding: 3vh 0;
+}
+
+.header__logo {
+    float: left;
+}
+
+.header__title {
+    margin: 0 6vw;
+}
+

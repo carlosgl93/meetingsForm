@@ -5,6 +5,7 @@ import { Layout, Menu } from 'antd';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined, HomeOutlined } from '@ant-design/icons';
 import UnRegisteredSidebar from './UnRegisteredSidebar';
 import firebase from "firebase"
+import "../Css/Sidebar.css";
 const { Sider } = Layout;
 
 function Sidebar() {

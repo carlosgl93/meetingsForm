@@ -1,7 +1,11 @@
-.App {
-    min-height: 100vh;
+* {
+    margin: 0;
 }
 
-.App > :first-child {
-    min-height: 100vh;
+.ant-layout {
+    min-height: 80vh;
+}
+
+.content {
+    padding-top: 10vh;
 }

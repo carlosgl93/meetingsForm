@@ -5,8 +5,10 @@ import {
 } from "react-router-dom";
 import { Layout } from "antd"
 import Sidebar from "./Components/Sidebar"
+import Footer from "./Components/Footer"
 import Home from "./Views/Home";
 import Login from "./Views/Login";
+import Header from "./Components/Header.js"
 import './App.css';
 import Register from "./Views/Register"
 import Profile from "./Views/Profile"
@@ -17,10 +19,12 @@ import AttendantCreate from "./AdminProvider/AttendantProvider/AttendantCreate"
 
 function App(props) {
   return (
+    <>
+    <Header/>
     <Layout className="App">
       <Sidebar/>
       <Switch>
-        <div>
+        <div className="content">
           <Route exact path="/">  
             <Home/>
           </Route>
@@ -45,6 +49,8 @@ function App(props) {
         </div>
       </Switch>
     </Layout>
+    <Footer/>
+    </>
     
     
   );
