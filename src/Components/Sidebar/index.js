@@ -3,7 +3,7 @@ import {Link, useHistory} from "react-router-dom"
 import {useUser, AuthCheck, useAuth } from "reactfire"
 import { Layout, Menu } from 'antd';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined, HomeOutlined } from '@ant-design/icons';
-import UnRegisteredSidebar from './UnRegisteredSidebar';
+import UnregisteredSidebar from '../UnregisteredSidebar';
 import firebase from "firebase"
 const { Sider } = Layout;
 
@@ -16,7 +16,7 @@ function Sidebar() {
     }
 
     return (
-        <AuthCheck fallback={<UnRegisteredSidebar/>}>
+        <AuthCheck fallback={<UnregisteredSidebar/>}>
             <Sider
                 breakpoint="md"
                 collapsedWidth="0"
