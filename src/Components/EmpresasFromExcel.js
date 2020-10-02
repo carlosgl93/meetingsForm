@@ -5,7 +5,7 @@ import _intersection from "lodash/intersection";
 import _flatten from "lodash/flatten";
 import _includes from 'lodash/includes'
 import { useDropzone } from "react-dropzone";
-import {firestoreAutoId} from "../Components/IdGen"
+import { generateId } from "../Components/utils"
 import { 
     useFirestore,
     useFirestoreCollectionData
@@ -90,7 +90,7 @@ function EmpresasFromExcel(props) {
       });
       if (!validData) return;
       console.log("datos parseados", { headers, rows });
-      let eventId = firestoreAutoId() 
+      let eventId = generateId() 
       rows.forEach( (row) => {
         row = { ...row, eventId: props.eventId}
         console.log(row)

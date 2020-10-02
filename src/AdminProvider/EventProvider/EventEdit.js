@@ -12,7 +12,6 @@ import {
 } from "react-admin"
 
 function EventEdit(props) {
-  console.log(props)
   return (
     <Edit {...props}>
       <SimpleForm>

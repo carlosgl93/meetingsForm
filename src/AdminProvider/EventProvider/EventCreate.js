@@ -1,6 +1,6 @@
 import React from "react";
 import EmpresasFromExcel from "../../Components/EmpresasFromExcel"
-import AsistentesFromExcel from "../../Components/AsistentesFromExcel"
+import AssistantsFromExcel from "../../Components/AssistantsFromExcel"
 import {
   Create,
   SimpleForm,
@@ -19,7 +19,7 @@ import {
 import { Button } from "antd";
 import RichTextInput from "ra-input-rich-text";
 import { Link } from "react-router-dom";
-import { firestoreAutoId } from "../../Components/IdGen"
+import { generateId } from "../../Components/utils"
 
 const PostSave =(props) => (
   <Toolbar {...props}>
@@ -33,7 +33,7 @@ const PostSave =(props) => (
 
 // generate eventId aqui, pasarselo como prop al read excel 
 function EventCreate(props) {
-  const eventId = firestoreAutoId()
+  const eventId = generateId()
   return (
     <div>
       <h2>Ingresa un nuevo evento</h2>
@@ -59,7 +59,7 @@ function EventCreate(props) {
           <p>Suba el archivo con las empresas asistentes al evento</p>
           <EmpresasFromExcel eventId={eventId}/>
           <p>Suba el archivo con los asistentes del evento</p>
-          <AsistentesFromExcel eventId={eventId}/>
+          <AssistantsFromExcel eventId={eventId}/>
         </SimpleForm>
       </Create>
     </div>
