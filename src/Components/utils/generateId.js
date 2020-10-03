@@ -1,4 +1,4 @@
-export const firestoreAutoId = () => {
+export default () => {
     const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     let autoId = ''
     for (let i = 0; i < 20; i++) {

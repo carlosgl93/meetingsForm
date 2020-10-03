@@ -6,7 +6,7 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined, HomeOutlined } from 
 
 const { Sider } = Layout;
 
-function UnRegisteredSidebar() {
+function UnregisteredSidebar() {
     return (
         <div>   
             <Sider
@@ -35,4 +35,4 @@ function UnRegisteredSidebar() {
     )
 }
 
-export default UnRegisteredSidebar
+export default UnregisteredSidebar

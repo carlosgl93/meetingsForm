@@ -5,7 +5,7 @@ import _intersection from "lodash/intersection";
 import _flatten from "lodash/flatten";
 import _includes from 'lodash/includes'
 import { useDropzone } from "react-dropzone";
-import {firestoreAutoId} from "../Components/IdGen"
+import { generateId } from "../utils"
 import { 
     useFirestore,
     useFirestoreCollectionData
@@ -20,7 +20,7 @@ import {
   RadioButtonGroupInput,
 } from "react-admin";
 
-function AsistentesFromExcel(props) {
+function AssistantsFromExcel(props) {
   const [state, setState] = useState({
     
   });
@@ -90,7 +90,7 @@ function AsistentesFromExcel(props) {
       });
       if (!validData) return;
       console.log("datos parseados", { headers, rows });
-      let eventId = firestoreAutoId() 
+      let eventId = generateId() 
       rows.forEach( (row) => {
         row = { ...row, eventId: props.eventId}
         console.log(row)
@@ -132,4 +132,4 @@ function AsistentesFromExcel(props) {
   );
 }
 
-export default AsistentesFromExcel;
+export default AssistantsFromExcel;
