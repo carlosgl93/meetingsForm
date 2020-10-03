@@ -10,7 +10,9 @@ import {
   SelectInput,
   Toolbar,
   SaveButton,
-  ImageInput
+  ImageInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 import { Button } from "antd";
 import RichTextInput from "ra-input-rich-text";
@@ -46,10 +48,16 @@ function EventCreate(props) {
           <Button>
             <Link to="/users/create">Crear Organizador</Link>
           </Button>
+          <ReferenceArrayInput label="Breaks del evento" source="id" reference="breaks">
+            <SelectArrayInput optionText="name" />
+          </ReferenceArrayInput>
+          <Button>
+            <Link to="/breaks/create">Crear Break</Link>
+          </Button>
           <TextInput source="address" label="Lugar del Evento" />
           <DateInput source="date" label="Fecha del Evento" />
-          <ImageInput label="Banner del Evento" source="eventImg"></ImageInput>
-          <RichTextInput label="Descripcion del evento" source="description"/>
+          <ImageInput labelSingle="Haga click aquí para seleccionar una imagen" source="eventImg"></ImageInput>
+          <RichTextInput label="Descripcion del evento" source="description" />
           {/**Funcion para leer y sacar empresas y participantes */}
           <p>Suba el archivo con las empresas asistentes al evento</p>
           <EmpresasFromExcel eventId={eventId}/>
