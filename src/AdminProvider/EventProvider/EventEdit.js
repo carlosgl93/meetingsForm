@@ -18,7 +18,7 @@ function EventEdit(props) {
         <TextInput source="name" />
         <TextInput source="address" />
         <TextInput source="description" />
-        <ReferenceArrayInput label="Breaks del evento" source="id" reference="breaks">
+        <ReferenceArrayInput label="Breaks del evento" source="breakIds" reference="breaks">
           <SelectArrayInput optionText="name" />
         </ReferenceArrayInput>
         <ReferenceInput source="organizerId" reference="users">

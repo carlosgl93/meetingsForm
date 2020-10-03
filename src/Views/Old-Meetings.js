@@ -3,32 +3,70 @@ import Card from "../Components/Card";
 import { useParams } from "react-router-dom";
 import BasicSelect from "../Components/BasicSelect";
 import SelectSearchInput from "../Components/SelectSearchInput";
-import { SuspenseWithPerf, useFirestore, useFirestoreCollection, useFirestoreCollectionData, useFirestoreDocData } from "reactfire";
+import { useFirestoreDocData, useFirestore } from "reactfire";
 
 function Meetings(props) {
-  const { eventId, participantId } = useParams();
+  let params = useParams();
+  console.log(params);
 
-  const getSnapshot = async (ref, query) => {
-    const snapshot = await ref.where(query.field, query.operator, query.value).get()
-    console.log("SNAPSHOT:", snapshot)
-    await snapshot.forEach(doc => console.log("DOC:", doc))
-    return snapshot
-  }
-
-  const eventRef = useFirestore().collection('events').doc(eventId)
-  const event = useFirestoreDocData(eventRef)
-  console.log("EVENT:", event)
-  let breaksRef = useFirestore().collection("breaks");
-  let participantsRef = useFirestore().collection("participantsFromExcel");
-
-  const breaksSnapshot = getSnapshot(breaksRef, {field: "eventId", operator: "==", value: eventId}).then(snap => snap)
-  console.log("BREAKS:", breaksSnapshot)
+  
 
   const [state, setState] = useState({
     breaks: [],
     participants: [],
     browsingParticipant: "colaborador",
   });
+
+
+  const ifBreaksParticipantsExist = () => {
+    if (state.breaks.length && state.participants.length) {
+      return renderBasedOnParticipantCategory();
+    }
+  };
+
+  let eventRef = useFirestore().collection("events").doc(params.eventId);
+  let eventInfo = useFirestoreDocData(eventRef);
+  console.log("eventInfo", eventInfo);
+  let breaksRef = useFirestore().collection("breaks");
+  let participantsRef = useFirestore().collection("participantsFromExcel");
+
+  useEffect(() => {
+    breaksRef
+      .where("eventId", "==", params.eventId)
+      .get()
+      .then((querySnapshot) => {
+        let breakData = querySnapshot.docs.map((doc) => {
+          return {
+            ...doc.data(),
+            id: doc.id,
+          };
+        });
+        participantsRef
+          .doc(params.participantId)
+          .get()
+          .then((doc) => {
+            let browsingParticipant = doc.data();
+            participantsRef
+              .where("eventId", "==", params.eventId)
+              .get()
+              .then((querySnapshot) => {
+                let participantData = querySnapshot.docs.map((doc) => {
+                  return doc.data();
+                });
+                setState({
+                  promiseFulfilled: true,
+                  breaks: breakData,
+                  participants: participantData,
+                  browsingParticipant,
+                });
+              });
+          });
+      });
+      console.log("running ifBreaksParticipantsExist ")
+      ifBreaksParticipantsExist();
+    console.log("state", state);
+
+  }, []);
 
   const renderBasedOnParticipantCategory = () => {
     if (state.browsingParticipant.categoria === "colaborador") {
@@ -149,10 +187,13 @@ function Meetings(props) {
     }
   };
 
+  
+
+  console.log("last state", state);
   return (
-    <SuspenseWithPerf fallback={<p>Loading...</p>} traceId="load-meeting-status">
-      {(renderBasedOnParticipantCategory())}
-    </SuspenseWithPerf>
+    <Suspense fallback={<p>Loading...</p>}>
+      {ifBreaksParticipantsExist()}
+    </Suspense>
   );
 }
 
