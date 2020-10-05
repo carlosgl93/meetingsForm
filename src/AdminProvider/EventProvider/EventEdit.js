@@ -1,24 +1,33 @@
 import React from "react";
-import { useStorage } from "reactfire"
 import {
-  Edit
+    Edit,
+    SimpleForm,
+    DateTimeInput,
+    TextInput,
+    ReferenceInput,
+    ReferenceArrayInput,
+    SelectInput,
+    SelectArrayInput
 } from "react-admin"
-import EventForm from "./EventForm"
 
 function EventEdit(props) {
-  const storage = useStorage()
-  props = {
-    ...props,
-    storage,
-    title: "Editar Evento"
-  }
-
   return (
-    <div>
-      <Edit {...props}>
-        <EventForm {...props} />
-      </Edit>
-    </div>
+    <Edit {...props}>
+      <SimpleForm>
+        <DateTimeInput source="date" />
+        <TextInput source="name" />
+        <TextInput source="address" />
+        <TextInput source="description" />
+        <ReferenceArrayInput label="Breaks del evento" source="breakIds" reference="breaks">
+          <SelectArrayInput optionText="name" />
+        </ReferenceArrayInput>
+        <ReferenceInput source="organizerId" reference="users">
+          <SelectInput
+            source="name"
+          />
+        </ReferenceInput>
+      </SimpleForm>
+    </Edit>
   );
 }
 
