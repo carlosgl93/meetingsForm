@@ -9,3 +9,11 @@
     padding: 3vh 0;
 }
 
+.right__column {
+    padding-top: 20px;
+}
+
+.footer__rightContainer {
+    display: grid;
+    
+}

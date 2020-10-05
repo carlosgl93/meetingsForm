@@ -2,10 +2,11 @@
     margin: 0;
 }
 
-.ant-layout {
-    min-height: 80vh;
+.content {
+    width: 100%;
+    padding-top: 10vh; 
 }
 
-.content {
-    padding-top: 10vh;
+.RaLayout-appFrame-99 {
+    margin: 0;
 }
