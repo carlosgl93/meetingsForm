@@ -14,15 +14,15 @@ constructor(storage) {
  * @memberof FirebaseProvider
  */
 manageFile = async (fileObject, path, docId) => {
-    if (fileObject) {
+  if (fileObject) {
     try {
-        const fullPath = `${path}/${docId}`
-        await this.uploadFile(fullPath, fileObject.rawFile)
-        return this.getDownloadUrl(fullPath)
+      const fullPath = `${path}/${docId}`
+      await this.uploadFile(fullPath, fileObject.rawFile)
+      return this.getDownloadUrl(fullPath)
     } catch (error) {
-        console.error('Could not upload file:', error.message)
+      console.error('Could not upload file:', error.message)
     }
-    }
+  }
 }
 
 uploadFile = async (filePath, file) => {
