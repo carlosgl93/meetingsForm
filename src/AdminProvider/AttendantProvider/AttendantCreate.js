@@ -7,7 +7,6 @@ import {
   ReferenceInput,
   SelectInput
 } from "react-admin";
-import RichTextInput from "ra-input-rich-text";
 
 function ClientCreate(props) {
   return (

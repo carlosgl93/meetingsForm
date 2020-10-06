@@ -4,12 +4,23 @@ import {
   SimpleForm,
   TextInput,
 } from "react-admin";
+import { useParams } from "react-router-dom";
 
 function ClientCreate(props) {
+  let params = useParams();
+  console.log("params", params)
+
+  const event_id = ""
+
+  console.log("props: ", props)
+
   return (
     <div>
       <Create {...props}>
-        <SimpleForm>
+        <SimpleForm
+        // defaultValue={event_id}
+        // redirect={redirect}
+        >
           <h2>Ingresa el nuevo organizador</h2>
           <TextInput source="name" label="Nombre del organizador" />
           <TextInput source="lastName" label="Apellido del organizador" />

@@ -9,8 +9,6 @@ function Meetings(props) {
   let params = useParams();
   console.log(params);
 
-  
-
   const [state, setState] = useState({
     breaks: [],
     participants: [],

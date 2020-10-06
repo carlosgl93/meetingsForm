@@ -15,6 +15,7 @@ import Profile from "./Views/Profile"
 import Admin from "./Views/Admin"
 import Meetings from "./Views/Meetings"
 import AttendantCreate from "./AdminProvider/AttendantProvider/AttendantCreate"
+import OrganizerCreate from "./AdminProvider/OrganizerProvider/OrganizerCreate"
 
 
 function App(props) {
@@ -45,6 +46,9 @@ function App(props) {
           </Route>
           <Route path="/invite/:eventId/:participantId">
             <AttendantCreate/>
+          </Route>
+          <Route path="/users/create/:eventId">
+            <OrganizerCreate/>
           </Route>
         </div>
       </Switch>
