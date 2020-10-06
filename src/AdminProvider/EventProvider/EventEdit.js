@@ -26,18 +26,7 @@ const { Title } = Typography
 
 
 function EventEdit(props) {
-  const {
-    basePath, // deduced from the location, useful for action buttons
-    defaultTitle, // the translated title based on the resource, e.g. 'Post #123'
-    loaded, // boolean that is false until the record is available
-    loading, // boolean that is true on mount, and false once the record was fetched
-    record, // record fetched via dataProvider.getOne() based on the id from the location
-    redirect, // the default redirection route. Defaults to 'list'
-    resource, // the resource name, deduced from the location. e.g. 'posts'
-    save, // the update callback, to be passed to the underlying form as submit handler
-    saving, // boolean that becomes true when the dataProvider is called to update the record
-    version, // integer used by the refresh feature
-  } = useEditController(props);
+  const { record } = useEditController(props)
 
   const storage = useStorage()
 
@@ -63,7 +52,7 @@ function EventEdit(props) {
         <Button>
           <Link to="/users/create">Crear Organizador</Link>
         </Button>
-        <ReferenceArrayInput label="Breaks del evento" source="breaksId" reference="breaks">
+        <ReferenceArrayInput label="Breaks del evento" source="breakIds" reference="breaks">
           <SelectArrayInput optionText="name" />
         </ReferenceArrayInput>
         <Button>

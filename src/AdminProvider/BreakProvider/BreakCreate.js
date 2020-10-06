@@ -32,7 +32,6 @@ function BreakCreate(props) {
           }
         >
           <TextInput source="name" label="Nombre del break" />
-          
           <TimeInput/>
           <NumberInput
             source="schedule"

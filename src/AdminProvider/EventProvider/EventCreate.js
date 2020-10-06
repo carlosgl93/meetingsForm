@@ -8,8 +8,6 @@ import {
   DateInput,
   ReferenceInput,
   SelectInput,
-  Toolbar,
-  SaveButton,
   ImageInput,
   ImageField,
   ReferenceArrayInput,
@@ -48,7 +46,7 @@ function EventCreate(props) {
           <Button>
             <Link to="/users/create">Crear Organizador</Link>
           </Button>
-          <ReferenceArrayInput label="Breaks del evento" source="breaksId" reference="breaks">
+          <ReferenceArrayInput label="Breaks del evento" source="breakIds" reference="breaks">
             <SelectArrayInput optionText="name" />
           </ReferenceArrayInput>
           <Button>
