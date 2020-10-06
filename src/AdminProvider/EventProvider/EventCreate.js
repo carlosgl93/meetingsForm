@@ -21,7 +21,6 @@ import { Link } from "react-router-dom";
 import { useStorage } from "reactfire"
 
 import { generateId } from "../../utils"
-import { Storage } from "../../utils"
 import PostSave from "./PostSave"
 import transformEventData from "./transformData"
 

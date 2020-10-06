@@ -15,6 +15,8 @@ import {
 import { Typography, Button } from "antd"
 import { Link } from "react-router-dom";
 import RichTextInput from "ra-input-rich-text";
+import { useStorage } from "reactfire"
+
 import EmpresasFromExcel from "../../Components/EmpresasFromExcel"
 import AssistantsFromExcel from "../../Components/AssistantsFromExcel"
 import PostSave from "./PostSave"
@@ -37,6 +39,8 @@ function EventEdit(props) {
     version, // integer used by the refresh feature
   } = useEditController(props);
 
+  const storage = useStorage()
+
   const renderImagePreview = () => {
     if (record)
     return <img src={record["bannerUrl"]} alt={`${record.name} banner`} style={{ maxWidth: '100%' }} />
@@ -44,7 +48,7 @@ function EventEdit(props) {
 
   return (
     <Edit {...props}>
-      <SimpleForm  toolbar={<PostSave transform={data => transformEventData(props.storage, { ...data })} eventId={props.eventId}/>}>
+      <SimpleForm  toolbar={<PostSave transform={data => transformEventData(storage, data)} eventId={props.eventId}/>}>
         <Title level={2}>{props.title}</Title>
         <TextInput source="name" label="Nombre del Evento" />
         <DateInput source="date" label="Fecha del Evento" />
