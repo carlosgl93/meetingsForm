@@ -5,7 +5,7 @@ import _intersection from "lodash/intersection";
 import _flatten from "lodash/flatten";
 import _includes from 'lodash/includes'
 import { useDropzone } from "react-dropzone";
-import { generateId } from "../utils"
+import { generateId } from "../../utils"
 import { 
     useFirestore,
     useFirestoreCollectionData

@@ -12,7 +12,7 @@
     "antd": "^4.6.3",
     "firebase": "^7.20.0",
     "lodash": "^4.17.20",
-    "query-string": "^6.13.5",
+    "moment": "^2.29.1",
     "ra-input-rich-text": "^3.8.3",
     "react": "^16.13.1",
     "react-admin": "^3.8.4",

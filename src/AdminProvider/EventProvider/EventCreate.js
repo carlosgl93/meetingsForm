@@ -10,33 +10,28 @@ import {
   DateInput,
   ReferenceInput,
   SelectInput,
-  Toolbar,
-  SaveButton,
   ImageInput,
+  ImageField,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 import RichTextInput from "ra-input-rich-text";
 import { Link } from "react-router-dom";
-import { generateId } from "../../Components/utils";
-import { useFirestoreDocData, useFirestore } from "reactfire"; 
 
-const PostSave = (props) => (
-  <Toolbar {...props}>
-    <SaveButton
-      label="Guardar"
-      transform={props.transform}
-      submitOnEnter={false}
-    />
-  </Toolbar>
-);
+import { generateId } from "../../utils"
+import PostSave from "./PostSave"
+import transformEventData from "./transformData"
+
 
 // generate eventId aqui, pasarselo como prop al read excel
 function EventCreate(props) {
-
   const [state, setState] = useState({
     visible: false,
 
   });
-  const eventId = generateId();
+
+  const eventId = generateId()
+  const storage = useStorage()
 
   const showModal = () => {
     setState({
@@ -79,17 +74,11 @@ function EventCreate(props) {
 
   return (
     <div>
-      <h2>Ingresa un nuevo evento</h2>
       <Create {...props}>
-        <SimpleForm
-          toolbar={
-            <PostSave
-              transform={(data) => ({ ...data, id: eventId })}
-              eventId={eventId}
-            />
-          }
-        >
+        <SimpleForm  toolbar={<PostSave transform={data => transformEventData(storage, { ...data, id: eventId })} eventId={eventId}/>}>
           <TextInput source="name" label="Nombre del Evento" />
+          <DateInput source="date" label="Fecha del Evento" />
+          <TextInput source="address" label="Lugar del Evento" />
           <ReferenceInput
             label="Organizador del evento"
             source="organizerId"
@@ -101,9 +90,18 @@ function EventCreate(props) {
             />
           </ReferenceInput>
           <button onClick={showModal()}></button>
-          <TextInput source="address" label="Lugar del Evento" />
-          <DateInput source="date" label="Fecha del Evento" />
-          <ImageInput label="Banner del Evento" source="eventImg"></ImageInput>
+          <Button>
+            <Link to="/users/create">Crear Organizador</Link>
+          </Button>
+          <ReferenceArrayInput label="Breaks del evento" source="breakIds" reference="breaks">
+            <SelectArrayInput optionText="name" />
+          </ReferenceArrayInput>
+          <Button>
+            <Link to="/breaks/create">Crear Break</Link>
+          </Button>
+          <ImageInput labelSingle="Haga click aquí para seleccionar una imagen" source="banner" accept="image/*">
+            <ImageField source="src" title="Banner" />
+          </ImageInput>
           <RichTextInput label="Descripcion del evento" source="description" />
           {/**Funcion para leer y sacar empresas y participantes */}
           <p>Suba el archivo con las empresas asistentes al evento</p>

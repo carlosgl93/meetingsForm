@@ -1,12 +1,6 @@
 import React from 'react'
 import {Field} from "react-final-form"
 
-function TimeInput() {
-    return (
-        <div>
-            <Field name="breakSchedule" component="input" type="time" placeholder="01:00 PM"/>
-        </div>
-    )
-}
+const TimeInput = () => (<Field name="startTime" component="input" type="time" placeholder="01:00 PM"/>)
 
 export default TimeInput
