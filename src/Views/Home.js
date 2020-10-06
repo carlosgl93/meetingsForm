@@ -1,6 +1,6 @@
 import React from 'react'
 import {useUser, AuthCheck} from "reactfire"
-import Register from "./Register"
+import Login from "./Login"
 
 function Home(props) {
 
@@ -8,7 +8,7 @@ function Home(props) {
     console.log(user);
 
     return (
-        <AuthCheck fallback={<Register/>}>
+        <AuthCheck fallback={<Login/>}>
             <div>
                 <h1>Welcome to networking forms</h1>
             </div>

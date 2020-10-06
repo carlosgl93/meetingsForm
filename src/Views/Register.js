@@ -3,7 +3,7 @@ import { Form, Input, Checkbox, Button, AutoComplete } from "antd";
 import { register } from "../serviceWorker";
 import { useAuth } from "reactfire";
 import "antd/dist/antd.css";
-import "./Register.css";
+import "../Css/Register.css";
 import { Link } from "react-router-dom";
 
 

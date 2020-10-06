@@ -48,6 +48,7 @@ function App(props) {
           </Route>
         </div>
       </Switch>
+      
     </Layout>
     <Footer/>
     </>

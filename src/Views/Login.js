@@ -34,6 +34,7 @@ const Login = () => {
               }}
               onFinish={onFinish}
             >
+              <h2 className="form__title">Inicia sesión en tu cuenta.</h2>
               <Form.Item
                 name="email"
                 rules={[
