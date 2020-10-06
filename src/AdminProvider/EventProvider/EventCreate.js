@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import EmpresasFromExcel from "../../Components/EmpresasFromExcel";
-import AssistantsFromExcel from "../../Components/AssistantsFromExcel";
 import { Modal, Button } from "antd";
-import OrganizerCreate from "../OrganizerProvider/OrganizerCreate";
 import {
   Create,
   SimpleForm,
@@ -17,59 +14,55 @@ import {
 } from "react-admin";
 import RichTextInput from "ra-input-rich-text";
 import { Link } from "react-router-dom";
+import { useFirestore, useStorage } from "reactfire"
 
+import FormModal from "../../Components/FormModal"
+import EmpresasFromExcel from "../../Components/EmpresasFromExcel";
+import AssistantsFromExcel from "../../Components/AssistantsFromExcel";
+import OrganizerCreate from "../OrganizerProvider/OrganizerCreate";
 import { generateId } from "../../utils"
 import PostSave from "./PostSave"
 import transformEventData from "./transformData"
 
-
 // generate eventId aqui, pasarselo como prop al read excel
 function EventCreate(props) {
-  const [state, setState] = useState({
-    visible: false,
 
+  const [organizerData, setOrganizerData] = useState({
+    name: "",
+    lastName: "",
+    contactEmail: "",
+    company: "",
   });
+
+  const [modalVisible, setModalVisible] = useState(false)
 
   const eventId = generateId()
   const storage = useStorage()
-
-  const showModal = () => {
-    setState({
-      name: "",
-      lastName: "",
-      contactEmail: "",
-      company: "",
-      visible: true,
-    });
-  };
-
-  const handleOk = (e) => {
-    console.log(e);
-    setState({
-      visible: false,
-    });
-  };
-
-  const handleCancel = (e) => {
-    console.log(e);
-    setState({
-      visible: false,
-    });
-  };
-
   let organizerRef = useFirestore().collection("users")
 
-  const organizerCreate = (e) => {
-    e.preventDefault()
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
+  const handleOk = (event) => {
+    console.log(event);
+    organizerCreate()
+    setModalVisible(false);
+  };
+
+  const handleCancel = (event) => {
+    console.log(event);
+    setModalVisible(false);
+  };
+
+  const organizerCreate = event => {
+    event.preventDefault()
     // firebase logic to create organizer
-    const data = {
-      name: state.name,
-      lastName: state.lastName,
-      contactEmail: state.contactEmail,
-      company: state.company
-    }
-    const res = organizerRef.doc(eventId).set(data)
-    handleOk()
+    let res = null
+    organizerRef.add(organizerData).then(response => {
+      console.log("RESPONSE:", response)
+      res = response
+    })
   }
 
   return (
@@ -89,7 +82,7 @@ function EventCreate(props) {
               optionText={(record) => `${record.name} ${record.lastName}`}
             />
           </ReferenceInput>
-          <button onClick={showModal()}></button>
+          <button onClick={showModal}></button>
           <Button>
             <Link to="/users/create">Crear Organizador</Link>
           </Button>
@@ -110,42 +103,39 @@ function EventCreate(props) {
           <AssistantsFromExcel eventId={eventId} />
         </SimpleForm>
       </Create>
-      <Modal
+
+      <FormModal
         title="Crea un nuevo organizador"
-        visible={state.visible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        visible={modalVisible}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
       >
         <SimpleForm>
-          <TextInput value={state.name} onChange={event => setState({
-            state,
+          <TextInput value={organizerData.name} onChange={event => setOrganizerData({
+            ...organizerData,
             name: event.target.value
           })} label="Nombre del organizador"/>
           <TextInput 
-          value={state.lastName} 
-          onChange={event => setState({
-            state,
-            lastName: event.target.value
-          })}
-          label="Apellido del organizador"/>
+            onChange={event => setOrganizerData({
+              ...organizerData,
+              lastName: event.target.value
+            })}
+            label="Apellido del organizador"/>
           <TextInput
-          value={state.contactEmail}
-          onChange={event => setState({
-            state,
-            contactEmail: event.target.value
-          })}
-          label="Email de contacto"/>
+            onChange={event => setOrganizerData({
+              ...organizerData,
+              contactEmail: event.target.value
+            })}
+            label="Email de contacto"/>
           <TextInput 
-          value={state.company} 
-          label="Compañia del organizador"
-          onChange={event => setState({
-            state,
-            company: event.target.value
-          })}
+            label="Compañia del organizador"
+            onChange={event => setOrganizerData({
+              ...organizerData,
+              company: event.target.value
+            })}
           />
-          <button onClick={OrganizerCreate()}></button>
         </SimpleForm>
-      </Modal>
+      </FormModal>
     </div>
   );
 }
