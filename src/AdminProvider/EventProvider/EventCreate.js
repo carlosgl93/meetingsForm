@@ -18,27 +18,13 @@ import {
 import { Button } from "antd";
 import RichTextInput from "ra-input-rich-text";
 import { Link } from "react-router-dom";
-import { generateId } from "../../utils"
 import { useStorage } from "reactfire"
 
+import { generateId } from "../../utils"
 import { Storage } from "../../utils"
+import PostSave from "./PostSave"
+import transformEventData from "./transformData"
 
-const transformEventData = async (storageInstance, data) => {
-  const storage = new Storage(storageInstance)
-  data.bannerUrl = await storage.manageFile(data.banner, 'events/banners', data.id)
-  delete data.banner
-  return data
-}
-
-const PostSave =(props) => (
-  <Toolbar {...props}>
-    <SaveButton
-      label="Guardar"
-      transform={props.transform}
-      submitOnEnter={false}
-    />
-    </Toolbar>
-)
 
 // generate eventId aqui, pasarselo como prop al read excel 
 function EventCreate(props) {
