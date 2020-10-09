@@ -12,7 +12,6 @@ function ClientEdit(props) {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextField source="createdby" />
         <TextInput source="name" />
         <TextInput source="lastName" />
         <TextInput source="contactEmail" />
